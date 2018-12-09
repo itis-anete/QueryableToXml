@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThisIsTest", "ThisIsTest\ThisIsTest.csproj", "{B43F7661-3868-4291-9214-0A46CB2F1140}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "qwertyuiop", "qwertyuiop\qwertyuiop.csproj", "{6E560333-3F4F-4511-A3A8-AE32E52BCA0D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B43F7661-3868-4291-9214-0A46CB2F1140}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B43F7661-3868-4291-9214-0A46CB2F1140}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B43F7661-3868-4291-9214-0A46CB2F1140}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B43F7661-3868-4291-9214-0A46CB2F1140}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6E560333-3F4F-4511-A3A8-AE32E52BCA0D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6E560333-3F4F-4511-A3A8-AE32E52BCA0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6E560333-3F4F-4511-A3A8-AE32E52BCA0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6E560333-3F4F-4511-A3A8-AE32E52BCA0D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
