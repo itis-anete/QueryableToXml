@@ -8,25 +8,9 @@ namespace qwertyuiop
 {
 	internal class Visitor : ExpressionVisitor
 	{
-//		private IQueryable<D4> queryablePlaces;
-
-//		internal Visitor(IQueryable<D4> places)
-//		{
-//			this.queryablePlaces = places;
-//		}
-
-//		protected override Expression VisitConstant(ConstantExpression c)
-//		{
-//			// Replace the constant QueryableTerraServerData arg with the queryable Place collection. 
-//			return c.Type == typeof(XmlQueryable)
-//				? Expression.Constant(this.queryablePlaces)
-//				: c;
-////			return Expression.Constant(this.queryablePlaces);
-//		}
-
-		public IEnumerable<D4> Execute(Expression jsonQuery)
+		public IEnumerable<D4> Execute(Expression expression)
 		{
-			var visitationResult = (ConstantExpression) Visit(jsonQuery) ?? throw new ArgumentNullException();
+			var visitationResult = (ConstantExpression) Visit(expression) ?? throw new ArgumentNullException(nameof(expression));
 			var returnedTokens = (IEnumerable<D4>) visitationResult.Value;
 			return returnedTokens
 				.Select(x => x);
@@ -56,8 +40,8 @@ namespace qwertyuiop
 
 		private Expression HandleSelectMethod(MethodCallExpression node)
 		{
-			var argument = (ConstantExpression) Visit(node.Arguments[0]);
-			var d4s = (IEnumerable<D4>) argument.Value;
+			var argument = (ConstantExpression) Visit(node.Arguments[0]) ?? throw new ArgumentNullException(nameof(node.Arguments));
+			var d4S = (IEnumerable<D4>) argument.Value;
 
 			var lambda = GetLambda(node.Arguments[1]);
 			var selectOption = ((PropertyInfo) ((MemberExpression) lambda.Body).Member).Name;
@@ -69,12 +53,12 @@ namespace qwertyuiop
 					throw new NotSupportedException("Unknown option in Select method");
 			}
 
-			return Expression.Constant(d4s);
+			return Expression.Constant(d4S);
 		}
 
 		private Expression HandleWhereMethod(MethodCallExpression node)
 		{
-			var argument = (ConstantExpression) Visit(node.Arguments[0]) ?? throw new ArgumentNullException();
+			var argument = (ConstantExpression) Visit(node.Arguments[0]) ?? throw new ArgumentNullException(nameof(node.Arguments));
 
 			var d4S = (IEnumerable<D4>) argument.Value;
 
@@ -83,7 +67,6 @@ namespace qwertyuiop
 			var predicate = lambda.Compile();
 			d4S = d4S.Where(x => predicate(x));
 			return Expression.Constant(d4S);
-
 		}
 
 		private static LambdaExpression GetLambda(Expression expression)

@@ -10,8 +10,8 @@ namespace qwertyuiop
 	{
 		public TextFile()
 		{
-			this.Expression = Expression.Constant(this);
-			this.Provider = new TextFileQueryProvider();
+			Expression = Expression.Constant(this);
+			Provider = new TextFileQueryProvider();
 		}
 
 		public TextFile(Expression expression, IQueryProvider queryProvider)

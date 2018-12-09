@@ -4,10 +4,10 @@ using FluentAssertions;
 using NUnit.Framework;
 using qwertyuiop;
 
-namespace NET_19_11_2018
+namespace ThisIsTest
 {
 	[TestFixture]
-	public class xmltests
+	public class Xmltests
 	{
 		[Test]
 		public void NoMethods()

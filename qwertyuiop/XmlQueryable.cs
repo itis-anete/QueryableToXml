@@ -24,15 +24,9 @@ namespace qwertyuiop
             Provider = new XmlQueryProvider();
         }
 
-        public IEnumerator<D4> GetEnumerator()
-        {
-            return Provider.Execute<IEnumerable<D4>>(Expression).GetEnumerator();
-        }
+        public IEnumerator<D4> GetEnumerator() => Provider.Execute<IEnumerable<D4>>(Expression).GetEnumerator();
 
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return GetEnumerator();
-        }
+        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
         public Type ElementType { get; } = typeof(D4);
         public Expression Expression { get; }
@@ -113,47 +107,4 @@ namespace qwertyuiop
             return null;
         }
     }
-
-
-//    public class FileSystemQueryContext
-//    {
-//        internal static object Execute(Expression expression, bool isEnumerable)
-//        {
-//            var queryableElements = GetAllFilesAndFolders();
-//
-//            // Copy the expression tree that was passed in, changing only the first
-//            // argument of the innermost MethodCallExpression.
-//            var treeCopier = new Visitor(queryableElements);
-//            var newExpressionTree = treeCopier.Visit(expression);
-//
-//            // This step creates an IQueryable that executes by replacing Queryable methods with Enumerable methods.
-//            return isEnumerable
-//                ? queryableElements.Provider.CreateQuery(newExpressionTree)
-//                : queryableElements.Provider.Execute(newExpressionTree);
-//        }
-//
-//        private static IQueryable<D4> GetAllFilesAndFolders()
-//        {
-//            var reader = XmlReader.Create(File.OpenRead("file1.xml"));
-//            var restrictedWords = new[] {"xml", "Root"};
-//            var list = new List<D4>();
-//            
-//            while (reader.Read())
-//            {
-//                if (reader.NodeType == XmlNodeType.Whitespace ||
-//                    restrictedWords.Contains(reader.Name)) continue;
-//                var name = reader.Name;
-//                reader.MoveToAttribute("Value");
-//                list.Add(new D4(name,reader.Value));
-//            }
-//
-//            var xmlQueryable = new XmlQueryable();
-//            foreach (var e in list)
-//            {
-//                xmlQueryable.Append(e);
-//            }
-//
-//            return xmlQueryable;
-//        }
-//    }
 }
